@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button, Alert, StyleSheet, Image, TouchableOpacity, ImageBackground} from 'react-native'
+import { View, Text, TextInput, Button, Alert, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -11,6 +11,10 @@ export default function Login({ navigation }) {
     const [pass, setpass] = useState('')
 
     function login() {
+        if (correo.trim() === '' || pass.trim() === '') {
+            Alert.alert('Error', 'Ingrese el correo y la contraseña');
+            return;
+        }
 
         const app = initializeApp(firebaseConfig)
         const auth = getAuth(app);
@@ -49,37 +53,41 @@ export default function Login({ navigation }) {
     }
 
 
-    return ( 
+
+    return (
         <ImageBackground source={require("../assets/83d928060ba1324135535823317f7a5b.jpg")} style={styles.background}>
-        <View>
+            <View>
 
 
-            <Image source={require("../assets/title.png")} style={styles.logo}></Image>
-            <Text style={styles.text}>Login</Text>
+                <Image source={require("../assets/title.png")} style={styles.logo}></Image>
+                <Text style={styles.text}>Login</Text>
 
-            <TextInput style={styles.textInput}
-                placeholder='Ingrese login'
-                keyboardType='email-address'
-                onChangeText={(text) => setcorreo(text)}
-                value={correo}
-            />
+                <TextInput style={styles.textInput}
+                    placeholder='Ingrese login'
+                    keyboardType='email-address'
+                    onChangeText={(text) => setcorreo(text)}
+                    value={correo}
+                    required={true}
+                />
 
-            <TextInput style={styles.textInput}
-                placeholder="Ingrese contraseña"
-                onChangeText={(text) => setpass(text)}
-                value={pass}
-            />
+                <TextInput style={styles.textInput}
+                    placeholder="Ingrese contraseña"
+                    onChangeText={(text) => setpass(text)}
+                    value={pass}  
+                    required={true} 
+                    secureTextEntry={true}
+                />
 
-            <TouchableOpacity style={styles.btn} onPress={() => login()}>
-                <Text style={styles.btnText}>Login</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => login()}>
+                    <Text style={styles.btnText}>Login</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn} onPress={() => registrar()}>
-                <Text style={styles.btnText}>Registrar</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={() => registrar()}>
+                    <Text style={styles.btnText}>Registrar</Text>
+                </TouchableOpacity>
 
-        </View> 
-        </ImageBackground> 
+            </View>
+        </ImageBackground>
     )
 }
 
@@ -106,7 +114,7 @@ const styles = StyleSheet.create(
             height: 50,
             marginTop: 20,
             borderRadius: 10,
-            backgroundColor: '#fff',
+            backgroundColor: '#95A5A6',
             marginLeft: 45,
         },
 
@@ -121,21 +129,21 @@ const styles = StyleSheet.create(
             resizeMode: 'contain',
             alignSelf: 'center',
             marginTop: 20,
-        }, 
-        text:{
+        },
+        text: {
 
             fontSize: 50,
             color: 'red',
-            fontWeight: 'bold', 
-            
+            fontWeight: 'bold',
             alignSelf: 'center',
-           
-        } , 
+
+        },
         background: {
             flex: 1,
             resizeMode: 'cover',
-            justifyContent: 'center',
-          },
+            justifyContent: 'center', 
+            resizeMode: "cover",
+        },
 
 
 

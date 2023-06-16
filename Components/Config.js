@@ -4,7 +4,8 @@ import {getDatabase} from "firebase/database"
 
 export const firebaseConfig = { 
   apiKey: "AIzaSyA4AIySGezKl2QFeBy7cR48as_pITZ0OE8",
-  authDomain: "juego-85563.firebaseapp.com",
+  authDomain: "juego-85563.firebaseapp.com", 
+  databaseURL: "https://juego-85563-default-rtdb.firebaseio.com",
   projectId: "juego-85563",
   storageBucket: "juego-85563.appspot.com",
   messagingSenderId: "627623657219",
@@ -12,6 +13,7 @@ export const firebaseConfig = {
  
 };
 
-// Initialize Firebase
+// Initialize Firebase 
 const app = initializeApp(firebaseConfig);
-export const db= getDatabase(app)
+export const db= getDatabase(app) 
+

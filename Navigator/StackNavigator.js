@@ -8,13 +8,17 @@ const Stack = createStackNavigator();
 
 function MyStack() {
     return (
-        <Stack.Navigator> 
-        <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Juego" component={Juego} />
-            
-
-            <Stack.Screen name="Registro" component={Registro} />
-
+        <Stack.Navigator>    
+        <Stack.Screen name="Juego" component={Juego}  options={{
+            headerShown: false}}/>
+        <Stack.Screen name="Login" component={Login}   options={{
+            headerShown: false // Oculta el encabezado
+          }}/>  
+        <Stack.Screen name="Registro" component={Registro} options={{
+            headerShown: false}} />
+        
+        
+        
         </Stack.Navigator>
     );
 }
